@@ -7,7 +7,7 @@ class Caregivers:
     def __init__(self, name, phone, email, pay_rate, hours=0):
         self.name = name
         self.phone = phone
-        self.email = email
+        self.email = email 
         self.pay_rate = pay_rate
         self.hours = hours
         #sets the defulat availability to available as given in directions
