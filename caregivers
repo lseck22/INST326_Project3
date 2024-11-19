@@ -1,4 +1,4 @@
-import calendar 
+import calendar #allows for the calendar module to be accessed
 from datetime import datetime
 from collections import defaultdict
 
@@ -19,6 +19,7 @@ class Caregivers:
   
     #function to set the availability
     def set_availability(self, shift,day, availability):
+        #the availability is set to the day and shift that the caregiver is free
         self.availability[(shift, day)] = availability
   
    
