@@ -12,3 +12,5 @@ def display_schedule(self):
             html += f"<tr><td>{day}</td><td>{am}</td><td>{pm}</td></tr>"
         
         html += "</table>"
+        print(html)
+
