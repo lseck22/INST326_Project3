@@ -16,11 +16,11 @@ class Schedule:
 
                 #iterates the caregivers list
                 for caregiver in self.caregivers:
-                    if caregiver.get_availability(day, shift) == 'preferred':
+                    if caregiver.get_availability(days, shift) == 'preferred':
                         #adds 6 hour shift
                         caregiver.hours += 6
                         #adds the caregivers name to the schedule if their availability is 'preferred'
-                        self.schedule[day][shift] = caregiver.name
+                        self.schedule[dasy][shift] = caregiver.name
                         #their shift assignment is now set to true
                         assigned = True
                         break
@@ -28,11 +28,11 @@ class Schedule:
                     iterates the caregivers list
                     for caregiver in self.caregivers:
                         #if the caregiver's availability is available, their name is added to the shift and hours added
-                        if caregiver.get_availability(day, shift) == 'available':
+                        if caregiver.get_availability(days, shift) == 'available':
                             #6 hour shift added to the  caregiver
                             caregiver.hours += 6
                             #caregivers name added to the schedule
-                            self.schedule[day][shift] = caregiver.name
+                            self.schedule[days][shift] = caregiver.name
                             #shift assignment is true
                             assigned = True
                             break
