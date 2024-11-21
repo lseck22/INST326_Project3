@@ -3,3 +3,31 @@ class Schedule:
         self.month = month 
         self.caregivers = caregivers
         self.schedule = defaultdict(lambda: {"AM": None, "PM": None})
+
+    def make_shifts(self):
+        #defines the variable day and uses the calendar module to determing the number of days in the specific month and year
+        days = calendar.monthrange(self.year, self.month)[1]
+
+        #iterates each day in the month
+        for day in range(1, days + 1):
+            for shift in ["AM", "PM"]:
+                assigned = False
+
+                #iterates the caregivers list
+                for caregiver in self.caregivers:
+                    if caregiver.get_availability(day, shift) == 'preferred':
+                        #adds the caregivers name to the schedule if their availability is 'preferred'
+                        self.schedule[day][shift] = caregiver.name
+                        #adds 6 hour shift
+                        caregiver.hours += 6
+                        assigned = True
+                        break
+                if not assigned:
+                    iterates the caregivers list
+                    for caregiver in self.caregivers:
+                        #if the caregiver's availability is available, their name is added to the shift and hours added
+                        if caregiver.get_availability(day, shift) == 'available':
+                            self.schedule[day][shift] = caregiver.name
+                            caregiver.hours += 6
+                            assigned = True
+                            break
