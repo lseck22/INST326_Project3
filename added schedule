@@ -7,19 +7,21 @@ class Schedule:
     def make_shifts(self):
         #defines the variable day and uses the calendar module to determing the number of days in the specific month and year
         days = calendar.monthrange(self.year, self.month)[1]
-
+         
         #iterates each day in the month
-        for day in range(1, days + 1):
+        for current_day in range(1, days + 1):
             for shift in ["AM", "PM"]:
+                #assignment to a shift is set to false
                 assigned = False
 
                 #iterates the caregivers list
                 for caregiver in self.caregivers:
                     if caregiver.get_availability(day, shift) == 'preferred':
-                        #adds the caregivers name to the schedule if their availability is 'preferred'
-                        self.schedule[day][shift] = caregiver.name
                         #adds 6 hour shift
                         caregiver.hours += 6
+                        #adds the caregivers name to the schedule if their availability is 'preferred'
+                        self.schedule[day][shift] = caregiver.name
+                        #their shift assignment is now set to true
                         assigned = True
                         break
                 if not assigned:
@@ -27,7 +29,10 @@ class Schedule:
                     for caregiver in self.caregivers:
                         #if the caregiver's availability is available, their name is added to the shift and hours added
                         if caregiver.get_availability(day, shift) == 'available':
-                            self.schedule[day][shift] = caregiver.name
+                            #6 hour shift added to the  caregiver
                             caregiver.hours += 6
+                            #caregivers name added to the schedule
+                            self.schedule[day][shift] = caregiver.name
+                            #shift assignment is true
                             assigned = True
                             break
